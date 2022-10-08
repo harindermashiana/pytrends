@@ -15,6 +15,15 @@ We chose the second approach because it is more accurate based on [this](https:/
 
 It took me around 4-5 hours to do everything.
 
+# What we do
+
+Based on the hourly, daily, weekly argument provided we set a timeframe width(7 days, 9 months, 5 years). Then we set an overlap period that allows for multiple overlaps in case there are 0 values in the overlap so we can't normalize on that. 
+- So say two requested time frames were First (12-03-2022 - 22-03-2022) and Second (05-03-2022 - 15-03-2022). Note: We start from today and go back till 2015-01-01.
+- We start comparing the trend values for overlap dates starting from 15th and in case we find non zero value we stop comparing and use the found value to normalize.
+- We create a scale = First (value on 15th) / Second (value on 15th)
+- Now we redefine Second = Second * Scale
+- First = First.append(Second)
+
 # How to run
 
 run requirements.txt to ensure all the requirements are satisfied.
